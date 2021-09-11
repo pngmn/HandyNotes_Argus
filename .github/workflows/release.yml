@@ -1,6 +1,5 @@
-name: Release AddOn # description of this workflow, can be anything you want
+name: Release
 
-# triggers when pushing a tag
 on:
   push:
     tags:
@@ -10,12 +9,17 @@ env:
   GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  release: # "release" is a job, you can name it anything you want
+  release:
     runs-on: ubuntu-latest
     steps:
-      # we first have to clone the AddOn project, this is a required step
-      - name: Clone project
-        uses: actions/checkout@v1
-      # once cloned, we just run the GitHub Action for the packager project
-      - name: Package and release
+      - name: Clone Project
+        uses: actions/checkout@v2
+
+      - name: Create Changelog
+        uses: pngmn/actions-recent-changelog@main
+        with:
+          input: CHANGELOG.md
+          output: RECENT_CHANGES.md
+
+      - name: Create Retail Package
         uses: BigWigsMods/packager@master

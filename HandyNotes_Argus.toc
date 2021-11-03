@@ -1,4 +1,4 @@
-## Interface: 90100
+## Interface: 90105
 ## Title: HandyNotes_Argus
 ## Version: @project-version@
 ## Notes: Shows location of treasures and rares in Argus & more
